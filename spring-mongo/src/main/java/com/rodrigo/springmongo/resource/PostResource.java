@@ -1,5 +1,7 @@
 package com.rodrigo.springmongo.resource;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +19,17 @@ public class PostResource {
 	@Autowired
 	PostService service;
 	
+	@GetMapping()
+	public ResponseEntity<List<Post>> findAll() {
+		return ResponseEntity.ok().body(service.findAll());
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Post> findById(@PathVariable String id) {
 		Post post = service.findById(id);
 		return ResponseEntity.ok().body(post);
 	}
+	
+	
 
 }

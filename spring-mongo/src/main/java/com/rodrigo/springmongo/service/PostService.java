@@ -1,5 +1,6 @@
 package com.rodrigo.springmongo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,9 @@ public class PostService {
 	public Post findById(String id) {
 		Optional<Post> postUser = postRepository.findById(id);
 		return postUser.orElseThrow(() -> new ObjectNotFoundException("Usuário sem post criado!"));
+	}
+	
+	public List<Post> findAll() {
+		return postRepository.findAll();
 	}
 }
